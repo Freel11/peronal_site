@@ -1,24 +1,96 @@
+/*Reset Start*/
+/* Box sizing rules */
 *,
 *::before,
 *::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	transition: 300ms ease-in-out;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    box-sizing: border-box;
+  }
+}
+/* Reset end */
 
 :root {
-	--display-font-size: 8rem;
 	--display-font-family: 'Alfa Slab One', cursive;
+	--display-font-family-2: 'Courier Prime', monospace;;
 
 	--background-color: #0f1108;
 	--text-color: #fff3b0;
-	--accent-color: #69a4b5;
-
-	--left-pill:  #78290F;
-	--center-pill: #FE7F2D;
-	--right-pill: #619B8A;
+	--accent-color-1: #78290F;
+	--accent-color-2: #FE7F2D;
+	--accent-color-3: #619B8A;
+	--theme-change-transition-time: 250ms;
 }
 
 section, 
@@ -60,13 +132,78 @@ header.header {
 	gap: 2rem;
 }
 
-header.header > .theme-selector-container > a > .theme-selector {
+.nav-icons-container {
+	display: flex;
+	gap: 1.5rem;
+}
+
+.nav-icons-container li:first-child {
+	margin-right: 2rem;
+}
+
+.icon {
 	display: inline-block;
 	width: 25px;
 }
 
-header.header > .theme-selector-container > a > .theme-selector > svg {
+.icon svg {
 	fill: var(--text-color);
+	transition: fill var(--theme-change-transition-time) ease-in-out, color 300ms ease-in-out;
+}
+
+.nav-icons-container li:not(:first-child) {
+	position: relative;
+	overflow: hidden;
+	padding: 0 .5rem;
+}
+
+.nav-icons-container li:not(:first-child)::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: -10%;
+	width: 120%;
+	height: 3px;
+}
+
+.nav-icons-container li:not(:first-child):hover::after {
+	animation: slide 1.3s ease-in-out;
+}
+
+@keyframes slide {
+	33% {
+		transform: translateX(100%);
+	}
+	66% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.nav-icons-container .linkedin::after {
+	background-color: var(--accent-color-1);
+}
+
+.nav-icons-container .github::after {
+	background-color: var(--accent-color-2);
+}
+
+.nav-icons-container .codepen::after {
+	background-color: var(--accent-color-3);
+}
+
+.nav-icons-container .linkedin a:hover svg {
+	fill: var(--accent-color-1);
+}
+
+.nav-icons-container .github a:hover svg {
+	fill: var(--accent-color-2);
+}
+
+.nav-icons-container .codepen a:hover svg {
+	fill: var(--accent-color-3);
 }
 
 header.header > .logo-container {
@@ -78,9 +215,8 @@ header.header > .logo-container {
 	width: 100%;
 	display: flex;
 	background-color: var(--background-color);
-/*	background-image: url("../img/backgroundv2.png");
-	background-position: center;
-	background-repeat: repeat;*/
+	transition: background-color var(--theme-change-transition-time) ease-in-out;
+	overflow-x: hidden;
 }
 
 .hero-section > .left-side,
@@ -95,76 +231,64 @@ header.header > .logo-container {
 	justify-content: center;
 }
 
-.left-side > .name {
-	font-size: var(--display-font-size);
+.left-side > h5,
+.left-side > h3 {
 	color: var(--text-color);
-	line-height: 0.9;
-	text-shadow: 3px 3px 0px var(--left-pill),
-		6px 6px 0px var(--center-pill),
-		9px 9px 0px var(--right-pill);
+	font-family: var(--display-font-family-2);
 }
 
-.left-side > .name.first {
-
+.left-side > h5 {
+	font-size: 1rem;
 }
 
-.left-side > .name.last {
-
+.left-side > h5 > span {
+	font-size: 1.5rem;
 }
 
-.hero-section > .right-side {
+.left-side > h3 {
+	font-size: 1.2rem;
+}
+
+.left-side > h1 {
+	font-size: 10rem;
+	line-height: 1.2;
+	color: var(--text-color);
+	text-shadow: 3px 3px 0px var(--accent-color-1),
+		6px 6px 0px var(--accent-color-2),
+		9px 9px 0px var(--accent-color-3);
+	transition: color var(--theme-change-transition-time) ease-in-out;
+}
+
+.scene-container {
 	display: flex;
 	justify-content: center;
-}
-
-.hero-section > .right-side > .pill-slide-container {
 	width: 100%;
 	height: 100%;
+	padding-top: 60px;
 }
 
-.right-side > .pill-slide-container  > .pill-slide {
-	width: 200px;
-	margin: 0 auto;
-	border-bottom-right-radius: 100px;
-	border-bottom-left-radius: 100px;
-	transform: translateY(-150%);
-	transition: transform 500ms ease-in-out;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 3rem;
-	font-family: var(--display-font-family);
-	color:  var(--text-color);
-	text-shadow: 2px 2px 0px var(--background-color);
+#scene #moon {
+	animation: rock 5s infinite ease-in-out;
+	transform-origin: center;
+	transform-box: fill-box;
 }
 
-.right-side > .pill-slide-container  > .pill-slide > span {
-	transform: rotate(-90deg);
+@keyframes rock {
+	0% {
+		transform: rotateZ(5deg);
+	}
+	25% {
+		transform: rotateZ(0deg);
+	}
+
+	50% {
+		transform: rotateZ(5deg);
+	}
+	75% {
+		transform: rotateZ(0deg);
+	}
+
+	100% {
+		transform: rotateZ(5deg);
+	}
 }
-
-.right-side > .pill-slide-container  > .pill-slide.slide {
-	transform: translateY(0%);
-}
-
-/*.right-side > .pill-slide-container:hover  > .pill-slide {
-	transform: translateY(-150%);
-}*/
-
-.right-side > .pill-slide-container  > .pill-slide.left-pill {
-	height: 90%;
-	background-color: var(--left-pill);
-	box-shadow: 4px 4px 0 0 rgba(120, 41, 15, .5);
-}
-
-.right-side > .pill-slide-container  > .pill-slide.center-pill {
-	height: 75%;
-	background-color: var(--center-pill);
-	box-shadow: 4px 4px 0 0 rgba(254, 127, 45, .5);
-}
-
-.right-side > .pill-slide-container  > .pill-slide.right-pill {
-	height: 60%;
-	background-color: var(--right-pill);
-	box-shadow: 4px 4px 0 0 rgba(97, 155, 138, .5);
-}
-
