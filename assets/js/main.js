@@ -1,16 +1,12 @@
 const introPills = document.querySelectorAll('.pill-slide')
 const preloader = document.getElementById('preloader')
+let moon = document.getElementById('moon')
+const tumbleweed = document.getElementById('tumbleweed')
 
 window.addEventListener('load', () => {
 	preloader.style.display = 'none'
-})
-
-document.addEventListener('DOMContentLoaded', () => {
+	moon.classList.add('initial-rise')
 	setTimeout(() => {
-		introPills.forEach((pill, index) => {
-			setTimeout(() => {
-				pill.classList.add('slide')
-			}, index * 200)
-		})
-	}, 800)
+		tumbleweed.classList.add('roll')
+	}, 1500)
 })

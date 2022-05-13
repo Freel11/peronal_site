@@ -90,7 +90,7 @@ select {
 	--accent-color-1: #78290F;
 	--accent-color-2: #FE7F2D;
 	--accent-color-3: #619B8A;
-	--theme-change-transition-time: 250ms;
+	--theme-change-transition-time: 500ms;
 }
 
 section, 
@@ -267,28 +267,68 @@ header.header > .logo-container {
 	padding-top: 60px;
 }
 
+#scene {
+	overflow: visible;
+}
+
 #scene #moon {
-	animation: rock 5s infinite ease-in-out;
+	transform-origin: center;
+	transform-box: fill-box;
+	opacity: 0;
+	transition: opacity 1s ease-in-out, transform 2s ease-in-out;
+}
+
+#scene #moon.initial-rise {
+	opacity: 1;
+}
+
+#scene #moon.rise {
+	transform: translateY(-1000px);
+	opacity: 0;
+}
+
+#scene #sun.rise {
+	animation: rise 2s ease-in-out forwards;
+/*	transform: translateY(0);
+	opacity: 1;*/
+}
+
+#scene #sun {
+	transform: translateY(1000px);
+	opacity: 0;
+	transition: opacity .5s ease-in-out, transform 2s ease-in-out;
+}
+
+#scene #tumbleweed {
+	transform: translateX(200px);
+	opacity: 0;
 	transform-origin: center;
 	transform-box: fill-box;
 }
 
-@keyframes rock {
-	0% {
-		transform: rotateZ(5deg);
-	}
-	25% {
-		transform: rotateZ(0deg);
-	}
+#scene #tumbleweed.roll {
+	opacity: 1;
+	animation: roll 4s linear forwards;
+}
 
-	50% {
-		transform: rotateZ(5deg);
+@keyframes roll {
+	100% {
+		transform: translateX(-1000px) rotateZ(-950deg);
+		opacity: 0;
 	}
-	75% {
-		transform: rotateZ(0deg);
+}
+
+@keyframes rise {
+	0% {
+		opacity: 0;
+	}
+	65% { 
+		opacity: 0;
 	}
 
 	100% {
-		transform: rotateZ(5deg);
+		transform: translateY(0);
+		opacity: 1;
 	}
 }
+
