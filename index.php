@@ -9,8 +9,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Courier+Prime&display=swap" rel="stylesheet"> 
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 	<script src="./assets/js/main.js" defer></script>
-	<script src="./assets/js/theme_selection.js" defer></script>
 </head>
 <body>
 	<div id="preloader"></div>
@@ -29,7 +29,7 @@
 		<div class="left-side">
 			<h5>Hi there, <span>&#x1F335;</span> Im</h5>
 			<h1 class="name">Jade</h1>
-			<h3>Frontend Developer | UX Designer</h3>
+			<h3>Frontend Developer | UX Designer<span class="cover"></span></h3>
 		</div>
 		<div class="right-side">
 			<div class="scene-container">

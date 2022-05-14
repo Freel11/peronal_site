@@ -247,6 +247,15 @@ header.header > .logo-container {
 
 .left-side > h3 {
 	font-size: 1.2rem;
+	position: relative;
+	width: fit-content;
+}
+
+.left-side h3 .cover {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: var(--background-color);
 }
 
 .left-side > h1 {
@@ -275,28 +284,15 @@ header.header > .logo-container {
 	transform-origin: center;
 	transform-box: fill-box;
 	opacity: 0;
-	transition: opacity 1s ease-in-out, transform 2s ease-in-out;
 }
 
 #scene #moon.initial-rise {
 	opacity: 1;
 }
 
-#scene #moon.rise {
-	transform: translateY(-1000px);
-	opacity: 0;
-}
-
-#scene #sun.rise {
-	animation: rise 2s ease-in-out forwards;
-/*	transform: translateY(0);
-	opacity: 1;*/
-}
-
 #scene #sun {
-	transform: translateY(1000px);
+	transform: translateY(500px);
 	opacity: 0;
-	transition: opacity .5s ease-in-out, transform 2s ease-in-out;
 }
 
 #scene #tumbleweed {
